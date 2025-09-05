@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans;
+  }
+  
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@layer components {
+  /* Chat message styles */
+  .message-user {
+    @apply bg-blue-600 text-white rounded-lg px-4 py-2 max-w-sm ml-auto;
+  }
+  
+  .message-assistant {
+    @apply bg-white text-gray-900 rounded-lg px-4 py-2 max-w-sm mr-auto border border-gray-200;
+  }
+  
+  .message-system {
+    @apply bg-yellow-50 text-yellow-800 rounded-lg px-4 py-2 text-sm border border-yellow-200;
+  }
+  
+  /* Button variants */
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors;
+  }
+  
+  .btn-danger {
+    @apply bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors;
+  }
+  
+  /* Input styles */
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
+  
+  .card-header {
+    @apply border-b border-gray-200 pb-4 mb-4;
+  }
+  
+  /* Progress styles */
+  .progress-bar {
+    @apply w-full bg-gray-200 rounded-full h-2;
+  }
+  
+  .progress-fill {
+    @apply h-2 bg-blue-600 rounded-full transition-all duration-300 ease-out;
+  }
+  
+  /* Status indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+  
+  .status-success {
+    @apply bg-green-500;
+  }
+  
+  .status-warning {
+    @apply bg-yellow-500;
+  }
+  
+  .status-error {
+    @apply bg-red-500;
+  }
+  
+  .status-info {
+    @apply bg-blue-500;
+  }
+  
+  /* Code blocks */
+  .code-block {
+    @apply bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm overflow-x-auto;
+  }
+  
+  /* Animation utilities */
+  .fade-in {
+    @apply animate-fadeIn;
+  }
+  
+  .slide-up {
+    @apply animate-slideUp;
+  }
+  
+  .pulse-slow {
+    @apply animate-pulse;
+  }
+  
+  /* Loading states */
+  .loading-spinner {
+    @apply animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600;
+  }
+  
+  /* Typography */
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slideUp {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  /* Scrollable areas */
+  .scrollable {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(209 213 219) rgb(243 244 246);
+  }
+  
+  /* Glassmorphism effect */
+  .glass {
+    @apply backdrop-blur-sm bg-white/80 border border-white/20;
+  }
+}
