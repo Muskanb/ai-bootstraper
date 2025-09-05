@@ -353,8 +353,7 @@ tenacity==8.2.3
 git clone <repo-url>
 cd ai-agent-bootstrapper
 
-# Backend setup
-cd backend
+# Backend setup - main proj
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
@@ -375,8 +374,7 @@ GEMINI_API_KEY=your_api_key_here
 ### 3. Run Application
 ```bash
 # Terminal 1: Backend
-cd backend
-uvicorn app:app --reload --port 8000
+source venv/bin/activate && python3 -m uvicorn backend.app:app
 
 # Terminal 2: Frontend
 cd frontend
