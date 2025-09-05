@@ -1868,11 +1868,17 @@ Available Tools: {result.get('available_capabilities', [])}
                 
                 # Prepare context for AI
                 context = f"""
-You are an expert project generator. Create comprehensive project creation steps for:
+You are an expert project generator. Your job is to GENERATE a JSON array of executable steps - you are NOT executing them yourself.
+
+The steps you generate will be executed by an automated system that has full access to file system, command execution, and code generation capabilities.
+
+Create comprehensive project creation steps for:
 
 {requirements_summary}
 
 {failure_context}
+
+IMPORTANT: You must ONLY return a JSON array of steps. Do NOT explain limitations or refuse to generate steps. The execution system will handle running these steps.
 
 User Requirements:
 - Project Type: {session_state.requirements.project_type or 'not specified'}
@@ -1946,8 +1952,8 @@ CORRECT ORDER EXAMPLE:
 ❌ Step 3: {{"command": "mkdir myproject/frontend", "description": "Create frontend directory"}}
 
 STEP SEQUENCE:
-1. Main project directory creation (mkdir {project_name})
-2. Subdirectory creation (mkdir {project_name}/frontend, {project_name}/backend, etc.)  
+1. Main project directory creation (mkdir {{project_name}})
+2. Subdirectory creation (mkdir {{project_name}}/frontend, {{project_name}}/backend, etc.)  
 3. Framework initialization (ONLY if framework tools are in Available Runtimes above)
 4. Dependency installation commands (ONLY using Package Managers listed above)
 5. File creation with CREATE_FILE commands (preferred over external tool commands)
@@ -1968,7 +1974,14 @@ Use this EXACT JSON format for each step:
   "file_content": "actual file content" (only for CREATE_FILE)
 }}}}
 
-Return ONLY a valid JSON array of steps, no other text.
+🚨 CRITICAL INSTRUCTION: Return ONLY a valid JSON array of steps, no explanations, no limitations, no other text. Just the JSON array starting with [ and ending with ].
+
+Example correct response:
+[
+  {{"command": "mkdir unigrow", "description": "Create main project directory"}},
+  {{"command": "mkdir unigrow/frontend", "description": "Create frontend directory"}},
+  {{"command": "npm init -y", "working_directory": "unigrow/frontend", "description": "Initialize frontend package.json"}}
+]
 """
 
                 # Use Gemini to generate steps
